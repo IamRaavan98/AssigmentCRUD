@@ -2,7 +2,6 @@ require("dotenv").config();
 const express = require("express");
 const app = express();
 const userRoutes = require("./routes/user");
-const cors = require("cors");
 const cookieParser = require("cookie-parser");
 const path = require('path');
 
@@ -32,6 +31,6 @@ app.get('/*', (req, res) => {
 });
 
 
-app.listen(process.env.PORT, () => {
-  console.log("Server is running", process.env.PORT);
+app.listen(process.env.PORT || 4000, () => {
+  console.log("Server is running", process.env.PORT || 4000);
 });
