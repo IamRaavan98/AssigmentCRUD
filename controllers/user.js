@@ -19,6 +19,7 @@ const forUpdateValidateData = (data) => {
 };
 // Get all data
 exports.getAllData = (req, res) => {
+  return res.status(200).json({dataFilePath})
  try {
   const results = [];
   fs.createReadStream(dataFilePath)
