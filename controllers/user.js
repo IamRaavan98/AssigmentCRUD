@@ -19,6 +19,7 @@ const forUpdateValidateData = (data) => {
 };
 // Get all data
 exports.getAllData = (req, res) => {
+ return  res.status(200).send("helo this is getALl DATA")
  try {
   console.log("iam workign , getalldata");
   const results = [];
