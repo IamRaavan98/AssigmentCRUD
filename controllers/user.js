@@ -33,9 +33,7 @@ exports.getAllData = (req, res) => {
       .on('end', () => {
       return res.status(200).json(results)
       })
-      .on('error', (error) => res.status(500).json({
-        message:error?.message
-      }));
+      .on('error', (error) => res.status(500).send(error?.message));
     });
  } catch (error) {
   res.status(400).send(error?.message)
