@@ -24,7 +24,6 @@ exports.getAllData = (req, res) => {
     fs.createReadStream(dataFilePath)
     .pipe(csv())
     .on('data', (data) => {
-      return res.status(200).json({data})
       results.push(data);
     })
     .on('end', () => {
