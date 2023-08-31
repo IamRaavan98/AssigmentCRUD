@@ -33,7 +33,7 @@ exports.getAllData = (req, res) => {
       message:error?.message
     }));
  } catch (error) {
-  res.status(500).send(error?.message)
+  res.status(400).send(error?.message)
  }
 };
 
