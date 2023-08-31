@@ -19,6 +19,7 @@ const forUpdateValidateData = (data) => {
 };
 // Get all data
 exports.getAllData = (req, res) => {
+ try {
   console.log("iam workign , getalldata");
   const results = [];
   fs.createReadStream(dataFilePath)
@@ -29,9 +30,12 @@ exports.getAllData = (req, res) => {
     })
     .on('end', () => {
       // console.log("All data parsed:", results); // Add this line
-      res.json(results);
+    return res.status(200).json(results)
     })
     .on('error', (error) => res.status(500).json({ error: 'Internal server error' }));
+ } catch (error) {
+  res.status(500).send(error)
+ }
 };
 
 
