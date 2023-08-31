@@ -1,15 +1,16 @@
 {
-    "builds": [
-      {
-        "src": "index.js",
-        "use": "@vercel/node"
-      },
-      {
-        "src": "public/**",
-        "use": "@vercel/static"
-      }
-    ],
-  
-    "rewrites": [{ "source": "/(.*)", "destination": "index.js" }]
-  }
-  
+  "version": 2,
+  "name": "assignment-crud",
+  "builds": [
+    {
+      "src": "server.js",
+      "use": "@vercel/node"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "/server.js"
+    }
+  ]
+}
