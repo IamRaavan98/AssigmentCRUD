@@ -19,6 +19,7 @@ const forUpdateValidateData = (data) => {
 };
 // Get all data
 exports.getAllData = (req, res) => {
+  console.log("iam workign , getalldata");
   const results = [];
   fs.createReadStream(dataFilePath)
     .pipe(csv())
