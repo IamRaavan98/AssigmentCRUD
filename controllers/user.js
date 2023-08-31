@@ -21,21 +21,27 @@ const forUpdateValidateData = (data) => {
 exports.getAllData = (req, res) => {
   try {
     const results = [];
-    fs.createReadStream(dataFilePath)
-    .pipe(csv())
-    .on('data', (data) => {
-      results.push(data);
-    })
-    .on('end', () => {
-    return res.status(200).json(results)
-    })
-    .on('error', (error) => res.status(500).json({
-      message:error?.message
-    }));
+    // Copy the CSV file from public folder to tmp folder
+    fs.copyFile(dataFilePath, '/tmp/data.csv', (err) => {
+      if (err) throw err;
+      // Read the CSV file from tmp folder
+      fs.createReadStream('/tmp/data.csv')
+      .pipe(csv())
+      .on('data', (data) => {
+        results.push(data);
+      })
+      .on('end', () => {
+      return res.status(200).json(results)
+      })
+      .on('error', (error) => res.status(500).json({
+        message:error?.message
+      }));
+    });
  } catch (error) {
   res.status(400).send(error?.message)
  }
 };
+
 
 
 // Create new data
