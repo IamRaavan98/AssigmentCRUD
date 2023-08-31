@@ -19,12 +19,12 @@ const forUpdateValidateData = (data) => {
 };
 // Get all data
 exports.getAllData = (req, res) => {
-  return res.status(200).json({dataFilePath})
- try {
-  const results = [];
-  fs.createReadStream(dataFilePath)
+  try {
+    const results = [];
+    fs.createReadStream(dataFilePath)
     .pipe(csv())
     .on('data', (data) => {
+      return res.status(200).json({data})
       results.push(data);
     })
     .on('end', () => {
