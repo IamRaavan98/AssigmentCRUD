@@ -19,23 +19,19 @@ const forUpdateValidateData = (data) => {
 };
 // Get all data
 exports.getAllData = (req, res) => {
- return  res.status(200).send("helo this is getALl DATA")
  try {
-  console.log("iam workign , getalldata");
   const results = [];
   fs.createReadStream(dataFilePath)
     .pipe(csv())
     .on('data', (data) => {
       results.push(data);
-      // console.log("Parsed data:", data); // Add this line
     })
     .on('end', () => {
-      // console.log("All data parsed:", results); // Add this line
     return res.status(200).json(results)
     })
     .on('error', (error) => res.status(500).json({ error: 'Internal server error' }));
  } catch (error) {
-  res.status(500).send(error)
+  res.status(500).send(error?.message)
  }
 };
 
