@@ -29,7 +29,9 @@ exports.getAllData = (req, res) => {
     .on('end', () => {
     return res.status(200).json(results)
     })
-    .on('error', (error) => res.status(500).json({ error: 'Internal server error' }));
+    .on('error', (error) => res.status(500).json({
+      message:error?.message
+    }));
  } catch (error) {
   res.status(500).send(error?.message)
  }
